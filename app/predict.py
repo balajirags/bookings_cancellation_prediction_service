@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import request
 from flask import jsonify
+from flask import g
+from flask_expects_json import expects_json
 from urllib.error import HTTPError
 import pickle
 import xgboost as xgb
@@ -19,6 +21,38 @@ def handle_error(e, code):
             'status': 'error',
             'message': f'{e}'
         }), code 
+    
+@app.errorhandler(400)
+def bad_request(error):
+     return jsonify({
+            'status': 'error',
+            'message': f'{error.description.message}'
+        }), 400 
+
+    
+schema = {
+    'type': 'object',
+    'properties': {
+        'type_of_meal': {'type': 'string'},
+        'room_type': {'type': 'string'},
+        'market_segment_type': {'type': 'string'},
+        'car_parking_space': {'type': 'number'},
+        'repeated': {'type': 'number'},
+        'month_of_reservation': {'type': 'string'},
+        'number_of_adults': {'type': 'number'},
+        'number_of_children': {'type': 'number'},
+        'number_of_weekend_nights': {'type': 'number'},
+        'number_of_week_nights': {'type': 'number'},
+        'lead_time': {'type': 'number'},
+        'p-c': {'type': 'number'},
+        'p-not-c': {'type': 'number'},
+        'average_price': {'type': 'number'},
+        'special_requests': {'type': 'number'}
+    },
+    'required': ['type_of_meal', 'room_type','market_segment_type','car_parking_space','repeated','month_of_reservation','number_of_adults','number_of_children',
+                 'number_of_weekend_nights','number_of_week_nights','lead_time','p-c','p-not-c','average_price','special_requests']
+}    
+
 
 model_path = os.getenv('MODEL_PATH', '../model/')
 dv, model = load_model(f'{model_path}/cancellation-pred-model-xgb.bin')
@@ -27,9 +61,10 @@ prediction_message = {1:'likely to cancel the booking',
                     0:'unlikely to cancel the booking'}
                     
 @app.route('/predict', methods=['POST'])
+@expects_json(schema)
 def predict_cancellation():
     try:
-        booking_details = request.get_json()
+        booking_details = g.data
         print(f'Received data {booking_details  }')
         X = dv.transform(booking_details)
         dtest = xgb.DMatrix(X,feature_names=list(dv.get_feature_names_out()))
@@ -52,6 +87,4 @@ def ping_api():
 
 
 if __name__ == '__main__':
-    #response = predict(url)
-    #print(response)
     app.run(debug=True, host='0.0.0.0', port=9696)

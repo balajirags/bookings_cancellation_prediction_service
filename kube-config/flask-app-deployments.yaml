@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cancellation-prediction-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cancellation-prediction
+  template:
+    metadata:
+      labels:
+        app: cancellation-prediction
+    spec:
+      containers:
+      - name: cancellation-prediction-pod
+        image: cancellation-prediction:v1
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9696
+        env:
+        - name: MODEL_PATH
+          value: "./"

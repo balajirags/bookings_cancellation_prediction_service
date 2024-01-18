@@ -6,8 +6,9 @@ name = "pypi"
 [packages]
 flask = "*"
 requests = "*"
-scikit-learn = "*"
 xgboost = "*"
+scikit-learn = "*"
+flask-expects-json = "*"
 
 [dev-packages]
 
