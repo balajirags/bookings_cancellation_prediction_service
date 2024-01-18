@@ -16,23 +16,25 @@ def load_model(file_path):
     dv, model = pickle.load(f_in)  
   return dv, model
 
+
 def handle_error(e, code):
     return jsonify({
             'status': 'error',
             'message': f'{e}'
         }), code 
-    
-@app.errorhandler(400)
+
+@app.errorhandler(400)    
 def bad_request(error):
      return jsonify({
             'status': 'error',
-            'message': f'{error.description.message}'
+            'message': f'{error}'
         }), 400 
 
     
 schema = {
     'type': 'object',
     'properties': {
+        'booking_id': {'type': 'string'},
         'type_of_meal': {'type': 'string'},
         'room_type': {'type': 'string'},
         'market_segment_type': {'type': 'string'},

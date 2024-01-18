@@ -116,7 +116,9 @@ run `./test_predict.sh`
 ### Sample data for testing ###
 Data whose booking cancellation is likely to happen in the future(prediction=True)
 ```Shell
-{"type_of_meal": "meal_plan_2",
+{
+ "booking_id": "531a9073-3ad7-4f0d-8733-9c24718d228d",
+ "type_of_meal": "meal_plan_2",
  "room_type": "room_type_1",
  "market_segment_type": "offline",
  "car_parking_space": 0,
@@ -135,7 +137,9 @@ Data whose booking cancellation is likely to happen in the future(prediction=Tru
 
 Data whose booking is unlikely to be cancelled in the future(prediction=False)
 ```Shell
-{"type_of_meal": "meal_plan_1",
+{          
+           "booking_id":"822a9073-3ad7-4f0d-8733-9c24718d228d",
+           "type_of_meal": "meal_plan_1",
            "room_type": "room_type_1",
            "market_segment_type": "offline",
            "car_parking_space": 0,
