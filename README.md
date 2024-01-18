@@ -138,29 +138,27 @@ Data whose booking cancellation is likely to happen in the future(prediction=Tru
 Data whose booking is unlikely to be cancelled in the future(prediction=False)
 ```Shell
 {          
-           "booking_id":"822a9073-3ad7-4f0d-8733-9c24718d228d",
-           "type_of_meal": "meal_plan_1",
-           "room_type": "room_type_1",
-           "market_segment_type": "offline",
-           "car_parking_space": 0,
-           "repeated": 0,
-           "month_of_reservation": "Oct",
-           "number_of_adults": 2,
-           "number_of_children": 0,
-           "number_of_weekend_nights": 0,
-           "number_of_week_nights": 3,
-           "lead_time": 105,
-           "p-c": 0,
-           "p-not-c": 0,
-           "average_price": 75.0,
-           "special_requests": 0}
+  "booking_id":"822a9073-3ad7-4f0d-8733-9c24718d228d",
+  "type_of_meal": "meal_plan_1",
+  "room_type": "room_type_1",
+  "market_segment_type": "offline",
+  "car_parking_space": 0,
+  "repeated": 0,
+  "month_of_reservation": "Oct",
+  "number_of_adults": 2,
+  "number_of_children": 0,
+  "number_of_weekend_nights": 0,
+  "number_of_week_nights": 3,
+  "lead_time": 105,
+  "p-c": 0,
+  "p-not-c": 0,
+  "average_price": 75.0,
+  "special_requests": 0}
 ```
 
 ## AWS Cloud Deployment ##
 
 The app was deployed on AWS EKS cluster and tested. You can find the video of testing here. Due to cost reason, removed the cluster post testing.
-
-
 
 ## Service API ##
 
@@ -187,6 +185,32 @@ cancellation_probability | Probabilty of cancellation | 0 to 1 | float
 prediction |   False - unlikely to cancel, True  - likely to cancel | true or false | boolean
 message | Human readable message of the response |String |String
                
+## Request schema ##
+```JSON
+schema = {
+    'type': 'object',
+    'properties': {
+        'booking_id': {'type': 'string'},
+        'type_of_meal': {'type': 'string'},
+        'room_type': {'type': 'string'},
+        'market_segment_type': {'type': 'string'},
+        'car_parking_space': {'type': 'number'},
+        'repeated': {'type': 'number'},
+        'month_of_reservation': {'type': 'string'},
+        'number_of_adults': {'type': 'number'},
+        'number_of_children': {'type': 'number'},
+        'number_of_weekend_nights': {'type': 'number'},
+        'number_of_week_nights': {'type': 'number'},
+        'lead_time': {'type': 'number'},
+        'p-c': {'type': 'number'},
+        'p-not-c': {'type': 'number'},
+        'average_price': {'type': 'number'},
+        'special_requests': {'type': 'number'}
+    },
+    'required': ['type_of_meal', 'room_type','market_segment_type','car_parking_space','repeated','month_of_reservation','number_of_adults','number_of_children',
+                 'number_of_weekend_nights','number_of_week_nights','lead_time','p-c','p-not-c','average_price','special_requests']
+}    
+```
 
 
 ## Training the model from scratch ##
