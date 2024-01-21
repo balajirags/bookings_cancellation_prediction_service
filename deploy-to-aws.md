@@ -26,7 +26,7 @@
 ```
 12. login via awscli 
 ```
-ecr get-login-password \
+aws ecr get-login-password \
     --region ${REGION} \
 | docker login \
     --username AWS \

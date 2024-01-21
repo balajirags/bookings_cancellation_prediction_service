@@ -8,7 +8,8 @@ make_prediction_request() {
   curl --request POST \
   --url http://localhost:9696/predict \
   --header 'Content-Type: application/json' \
-  --data '{"type_of_meal": "meal_plan_1",
+  --data '{"booking_id":"531a9073-3ad7-4f0d-8733-9c24718d228d",
+           "type_of_meal": "meal_plan_1",
            "room_type": "room_type_1",
            "market_segment_type": "offline",
            "car_parking_space": 0,

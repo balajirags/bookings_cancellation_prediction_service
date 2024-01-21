@@ -59,7 +59,7 @@ Use `pipenv install` to install dependencies from respective directories, Only i
 
 ## How to run app locally [without Docker] ##
 1.  Clone this repo
-2.  `cd repo/app`
+2.  `cd bookings_cancellation_prediction_service/app`
 3. `pipenv install`
 4. `pipenv shell`
 5. `python3 predict.py`
@@ -67,7 +67,7 @@ Use `pipenv install` to install dependencies from respective directories, Only i
 
 ## How to run app locally with Docker ##
 1.  Clone this repo
-2.  `cd repo`
+2.  `cd bookings_cancellation_prediction_service`
 3. `docker build -t cancellation-prediction:v1  -f  ./app/cancellation_prediction_app_image.dockerfile .`
 4. `docker run -it --rm -p 9696:9696 cancellation-prediction:v1`
 5.  check if the containers is up `docker ps`
@@ -115,7 +115,7 @@ run `./test_predict.sh`
 
 ### Sample data for testing ###
 Data whose booking cancellation is likely to happen in the future(prediction=True)
-```Shell
+```JSON
 {
  "booking_id": "531a9073-3ad7-4f0d-8733-9c24718d228d",
  "type_of_meal": "meal_plan_2",
@@ -136,7 +136,7 @@ Data whose booking cancellation is likely to happen in the future(prediction=Tru
 ```
 
 Data whose booking is unlikely to be cancelled in the future(prediction=False)
-```Shell
+```JSON
 {          
   "booking_id":"822a9073-3ad7-4f0d-8733-9c24718d228d",
   "type_of_meal": "meal_plan_1",
@@ -187,7 +187,7 @@ message | Human readable message of the response |String |String
                
 ## Request schema ##
 ```JSON
-schema = {
+{
     'type': 'object',
     'properties': {
         'booking_id': {'type': 'string'},
