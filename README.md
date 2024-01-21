@@ -75,9 +75,9 @@ Use `pipenv install` to install dependencies from respective directories, Only i
 
 
 ## How to run on local kubernetes ##
-1. Ensure [`kind`](https://kind.sigs.k8s.io/) kubernetes in installed
+1. Ensure [`kind`](https://kind.sigs.k8s.io/) kubernetes in installed and running.
 2. run `./deploy-local-kube.sh <cluster-name>`
-3. `kubectl port-forward services/sports-gateway-service 9696:9696`
+3. `kubectl port-forward services/cancellation-prediction-service 9696:9696`
 4. Test the application with postman or python script.
 5. Once testing is completed delete your local cluster using `./delete-local-kube.sh`
 
