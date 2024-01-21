@@ -5,7 +5,7 @@ In the dynamic hospitality industry, hotel bookings are subject to fluctuations 
 
 ### Goals  ###
 1. Design and implement a machine learning model that predicts the probability of a hotel booking being canceled.
-2. Utilize historical booking data, customer profiles, booking details, and other relevant features to train the model.
+2. Utilize historical booking data, booking details, and other relevant features to train the model.
 3. Evaluate the model's performance using appropriate metrics, such as auc,accuracy, precision, recall, and F1-score.
 4. Provide actionable insights to hotel management for proactive decision-making and resource allocation.
 
@@ -158,7 +158,7 @@ Data whose booking is unlikely to be cancelled in the future(prediction=False)
 
 ## AWS Cloud Deployment ##
 
-The app was deployed on AWS EKS cluster and tested. You can find the video of testing here. Due to cost reason, removed the cluster post testing.
+The app was deployed on AWS EKS cluster and tested. You can find the video of testing here `./testing_aws_deployment.mov`. Due to cost reason, removed the cluster post testing.
 
 ## Service API ##
 
